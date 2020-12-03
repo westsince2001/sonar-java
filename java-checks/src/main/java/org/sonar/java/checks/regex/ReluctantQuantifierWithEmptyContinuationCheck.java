@@ -29,6 +29,7 @@ import org.sonar.java.regex.ast.Quantifier;
 import org.sonar.java.regex.ast.RegexBaseVisitor;
 import org.sonar.java.regex.ast.RepetitionTree;
 import org.sonar.java.regex.ast.StartState;
+import org.sonar.plugins.java.api.tree.ExpressionTree;
 
 @Rule(key = "S6019")
 public class ReluctantQuantifierWithEmptyContinuationCheck extends AbstractRegexCheckTrackingMatchType {
@@ -37,7 +38,7 @@ public class ReluctantQuantifierWithEmptyContinuationCheck extends AbstractRegex
   private static final String FULL_MATCH_MESSAGE = "Remove the '?' from this unnecessarily reluctant quantifier.";
 
   @Override
-  protected void checkRegex(RegexParseResult regex, MatchType matchType) {
+  protected void checkRegex(RegexParseResult regex, ExpressionTree methodInvocationOrAnnotation, MatchType matchType) {
     message(matchType).ifPresent(message ->
       new ReluctantQuantifierWithEmptyContinuationFinder(message).visit(regex)
     );
