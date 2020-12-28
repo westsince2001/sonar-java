@@ -29,7 +29,7 @@ class MockitoArgumentMatchersUsedOnAllParametersCheckTest {
   @Test
   void test() {
     JavaCheckVerifier.newVerifier()
-      .onFile(nonCompilingTestSourcesPath("checks/MockitoArgumentMatchersUsedOnAllParameters.java"))
+      .onFile(nonCompilingTestSourcesPath("checks/tests/MockitoArgumentMatchersUsedOnAllParameters.java"))
       .withCheck(new MockitoArgumentMatchersUsedOnAllParametersCheck())
       .verifyIssues();
   }
